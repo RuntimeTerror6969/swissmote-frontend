@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 
-const socket = io("https://swissmote-backend-beryl.vercel.app/", {
+const socket = io("https://swissmote-sns7.onrender.com/", {
   reconnection: true,
   reconnectionDelay: 1000,
   reconnectionDelayMax: 5000,
