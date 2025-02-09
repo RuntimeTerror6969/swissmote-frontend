@@ -1,33 +1,213 @@
-# Project Overview
+Below is an improved README that explains the project, tech stack, installation, configuration, usage, and more in a clear and professional way:
 
-This project is a simple web application that allows users to create and manage a events It provides a user-friendly interface for adding, editing, and deleting tasks.
+---
 
-# Tech Stack
+# Event Planner Application
 
-1. React + Vite
-2. React Router
-3. Redux Toolkit for state management
-4. Axios for making API requests
-5. Socket-io-client for real-time communication
-6. React Toastify for displaying notifications
-7. No libraries only custom CSS for styling
+A simple web application that allows users to create and manage events in real-time. This project features a user-friendly interface for adding, editing, and deleting events, along with real-time updates via Socket.IO.
 
-# Setup Installation
+---
 
-1. Clone the repository to your local machine using command or zip file
-2. Navigate to the project directory
-3. Install the dependencies using command npm install
-4. Start the development server using command npm run dev if want production build use npm run build
-5. Open your web browser and visit http://localhost:5000 to access the application
-6. One small thing you need to do when you run this project one local machine that is in the axios baseURL (all the axios files are placed on client - src - features) you need to change the baseURL to your local machine which is http://localhost:9000 don't forget replace i just forget to addup env files for a frontend and one more thing change the socket.io baseURL to your local machine which is http://localhost:9000
+## Table of Contents
 
-# Usage
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Setup and Installation](#setup-and-installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
-1. Create an account or log in if you already have an account so easy peasy you can create your own account and login
-2. As you mentioned on the pdf i'll provide the credentials for login "admin@gmail.com" and "admin123"
-3. Create your custom events and hit the create event button
-4. On the right side of the page you will see the events that you have created
-5. You can edit and delete the events as well
-6. Last 3 events only visible on the right side because of the easy to remember if you want to see all the events go to the dashboard you will see all the events with join button and you will see the real time participants
-7. You will see also filter features on dashboard based on categories and from and to date filters
-8. Don't worry if suddenly the page is not working or shutdown our JWT token is always has on local storage so you can refresh the page and you will see the same page where you're logged in
+---
+
+## Features
+
+- **User Authentication:**  
+  Users can register, log in, and remain authenticated via JWT stored in local storage.
+  
+- **Event Management:**  
+  Create, edit, and delete events through an intuitive interface.
+
+- **Real-Time Communication:**  
+  Real-time updates for event participation using Socket.IO.
+
+- **Event Filtering:**  
+  Filter events based on category and date range.
+
+- **Responsive Design:**  
+  Custom CSS (no external styling libraries) ensures a clean and responsive layout.
+
+---
+
+## Tech Stack
+
+**Frontend:**
+- React with Vite
+- React Router for client-side routing
+- Redux Toolkit for state management
+- Axios for API requests
+- Socket.IO-client for real-time communication
+- React Toastify for notifications
+- Custom CSS for styling
+
+**Backend:**
+- Express.js for the API
+- MongoDB (or your chosen database) for data storage
+- JWT for authentication
+- Socket.IO for real-time events
+
+---
+
+## Setup and Installation
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v14 or above) and npm installed.
+- A MongoDB instance (local or hosted).
+
+### Steps
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/RuntimeTerror6969/swissmote-frontend
+   cd swissmote-frontend
+   ```
+
+2. **Install Dependencies:**
+
+   In the project root directory, run:
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the Development Server:**
+
+   For the frontend, run:
+
+   ```bash
+   npm run dev
+   ```
+
+   For the backend (if run separately), use:
+
+   ```bash
+   npm start
+   ```
+   
+   *Note:* The backend server typically runs on `http://localhost:9000` and the frontend on a port defined by Vite (e.g., `http://localhost:3000`). Adjust the base URLs as described below.
+
+4. **Production Build:**
+
+   To build the production version, run:
+
+   ```bash
+   npm run build
+   ```
+
+5. **Access the Application:**
+
+   Open your web browser and navigate to the frontend URL (e.g., `http://localhost:3000`). The backend API will be accessed via the configured base URLs.
+
+---
+
+## Configuration
+
+### Frontend Configuration
+
+- **Axios Base URL:**
+
+  In your axios configuration files (located in `client/src/features`), update the base URL to point to your local backend:
+
+  ```js
+  axios.defaults.baseURL = "http://localhost:9000";
+  ```
+
+- **Socket.IO Base URL:**
+
+  Update the Socket.IO client base URL to:
+
+  ```js
+  const socket = io("http://localhost:9000");
+  ```
+
+### Environment Variables
+
+Create a `.env` file in the backend root directory with the following (customize as needed):
+
+```env
+PORT=9000
+MONGO_URI=<your-mongodb-uri>
+JWT_SECRET=<your-secret-key>
+```
+
+---
+
+## Usage
+
+1. **User Registration and Login:**
+
+   - Navigate to the registration page to create a new account.
+   - Alternatively, use the provided admin credentials:
+     - **Email:** `admin@gmail.com`
+     - **Password:** `admin123`
+     
+2. **Creating Events:**
+
+   - Once logged in, use the "Create Event" form to add a new event by providing a title, description, date/time, location, and category.
+   
+3. **Managing Events:**
+
+   - On the homepage, the right-hand panel displays your upcoming events.
+   - Edit or delete events as needed.
+   - Only the last three events are shown on the homepage for brevity; view all events on the Dashboard.
+   
+4. **Dashboard:**
+
+   - The Dashboard displays all events, each with a "Join" button and real-time participant counts.
+   - Use the filter options to narrow down events by category and date range.
+   
+5. **Persistent Login:**
+
+   - The JWT token is stored in local storage. If the page is refreshed, you will remain logged in.
+
+---
+
+## Deployment on Vercel
+
+For SPAs deployed on Vercel, add a `vercel.json` file in the frontend root directory to ensure client-side routes are handled correctly:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
+
+This configuration ensures that any request not matching a static file is rewritten to `index.html`, allowing React Router to manage the routes.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## Acknowledgments
+
+- Special thanks to the developers and maintainers of React, Vite, Redux Toolkit, Socket.IO, and React Toastify.
+- Thanks to all open-source contributors who make projects like this possible.
+
+---
+
+Happy coding!
+
+---
+
+You can now use this README in your repository for a clear, professional overview and instructions for setting up and using the Event Planner Application.
