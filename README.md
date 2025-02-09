@@ -1,7 +1,3 @@
-Below is an improved README that explains the project, tech stack, installation, configuration, usage, and more in a clear and professional way:
-
----
-
 # Event Planner Application
 
 A simple web application that allows users to create and manage events in real-time. This project features a user-friendly interface for adding, editing, and deleting events, along with real-time updates via Socket.IO.
